@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>sizes</key>
+	<dict>
+		<key>38mm</key>
+		<dict>
+			<key>filenamePrefix</key>
+			<string>38mm</string>
+			<key>screenshotWidth</key>
+			<integer>272</integer>
+			<key>screenshotHeight</key>
+			<integer>340</integer>
+			<key>imageWidth</key>
+			<integer>976</integer>
+			<key>imageHeight</key>
+			<integer>976</integer>
+			<key>modelFilenames</key>
+			<array>
+				<string>sport_aluminum_white_sportband</string>
+				<string>sport_aluminum_blue_sportband</string>
+				<string>sport_aluminum_green_sportband</string>
+				<string>sport_aluminum_pink_sportband</string>
+				<string>sport_aluminum_black_sportband</string>
+				<string>watch_stainless_white_sportband</string>
+				<string>watch_stainless_black_sportband</string>
+				<string>watch_stainless_black_classicbuckle</string>
+				<string>watch_stainless_milanese</string>
+				<string>watch_stainless_black_modernbuckle</string>
+				<string>watch_stainless_midnightblue_modernbuckle</string>
+				<string>watch_stainless_softpink_modernbuckle</string>
+				<string>watch_stainless_brown_modernbuckle</string>
+				<string>watch_stainless_linkbracelet</string>
+				<string>watch_spaceblackstainless_linkbracelet</string>
+				<string>edition_rosegold_white_sportband</string>
+				<string>edition_yellowgold_black_sportband</string>
+				<string>edition_rosegold_rosegray_modernbuckle</string>
+				<string>edition_yellowgold_brightred_modernbuckle</string>
+			</array>
+			<key>productIdentifiers</key>
+			<dict>
+				<key>edition_rosegold_white_sportband</key>
+				<string>com.netsplit.WatchShot.38mm_edition_rosegold_white_sportband</string>
+				<key>edition_yellowgold_black_sportband</key>
+				<string>com.netsplit.WatchShot.38mm_edition_yellowgold_black_sportband</string>
+				<key>edition_rosegold_rosegray_modernbuckle</key>
+				<string>com.netsplit.WatchShot.38mm_edition_rosegold_rosegray_modernbuckle</string>
+				<key>edition_yellowgold_brightred_modernbuckle</key>
+				<string>com.netsplit.WatchShot.38mm_edition_yellowgold_brightred_modernbuckle</string>
+			</dict>
+			<key>activationKeys</key>
+			<dict/>
+		</dict>
+		<key>42mm</key>
+		<dict>
+			<key>filenamePrefix</key>
+			<string>42mm</string>
+			<key>screenshotWidth</key>
+			<integer>312</integer>
+			<key>screenshotHeight</key>
+			<integer>390</integer>
+			<key>imageWidth</key>
+			<integer>1120</integer>
+			<key>imageHeight</key>
+			<integer>1120</integer>
+			<key>modelFilenames</key>
+			<array>
+				<string>sport_aluminum_white_sportband</string>
+				<string>sport_aluminum_blue_sportband</string>
+				<string>sport_aluminum_green_sportband</string>
+				<string>sport_aluminum_pink_sportband</string>
+				<string>sport_aluminum_black_sportband</string>
+				<string>sport_aluminum_black_green_sportband</string>
+				<string>watch_stainless_white_sportband</string>
+				<string>watch_stainless_black_sportband</string>
+				<string>watch_stainless_black_classicbuckle</string>
+				<string>watch_stainless_milanese</string>
+				<string>watch_stainless_black_leatherloop</string>
+				<string>watch_stainless_brightblue_leatherloop</string>
+				<string>watch_stainless_stone_leatherloop</string>
+				<string>watch_stainless_lightbrown_leatherloop</string>
+				<string>watch_stainless_linkbracelet</string>
+				<string>watch_spaceblackstainless_linkbracelet</string>
+				<string>edition_rosegold_white_sportband</string>
+				<string>edition_yellowgold_black_sportband</string>
+				<string>edition_yellowgold_black_classicbuckle</string>
+				<string>edition_yellowgold_midnightblue_classicbuckle</string>
+			</array>
+			<key>productIdentifiers</key>
+			<dict>
+				<key>edition_rosegold_white_sportband</key>
+				<string>com.netsplit.WatchShot.42mm_edition_rosegold_white_sportband</string>
+				<key>edition_yellowgold_black_sportband</key>
+				<string>com.netsplit.WatchShot.42mm_edition_yellowgold_black_sportband</string>
+				<key>edition_yellowgold_black_classicbuckle</key>
+				<string>com.netsplit.WatchShot.42mm_edition_yellowgold_black_classicbuckle</string>
+				<key>edition_yellowgold_midnightblue_classicbuckle</key>
+				<string>com.netsplit.WatchShot.42mm_edition_yellowgold_midnightblue_classicbuckle</string>
+			</dict>
+			<key>activationKeys</key>
+			<dict>
+				<key>sport_aluminum_black_green_sportband</key>
+				<string>Keybuk</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>descriptions</key>
+	<dict>
+		<key>models</key>
+		<dict>
+			<key>sport_</key>
+			<string>SPORT</string>
+			<key>watch_</key>
+			<string></string>
+			<key>edition_</key>
+			<string>EDITION</string>
+		</dict>
+		<key>cases</key>
+		<dict>
+			<key>sport_aluminum_</key>
+			<string>Silver Aluminum Case</string>
+			<key>sport_aluminum_black_</key>
+			<string>Space Gray Aluminum Case</string>
+			<key>watch_stainless_</key>
+			<string>Stainless Steel Case</string>
+			<key>watch_spaceblackstainless_</key>
+			<string>Space Black Stainless Steel Case</string>
+			<key>edition_rosegold_</key>
+			<string>18-Karat Rose Gold Case</string>
+			<key>edition_yellowgold_</key>
+			<string>18-Karat Yellow Gold Case</string>
+		</dict>
+		<key>bands</key>
+		<dict>
+			<key>_white_sportband</key>
+			<string>White Sport Band</string>
+			<key>_blue_sportband</key>
+			<string>Blue Sport Band</string>
+			<key>_green_sportband</key>
+			<string>Green Sport Band</string>
+			<key>_pink_sportband</key>
+			<string>Pink Sport Band</string>
+			<key>_black_sportband</key>
+			<string>Black Sport Band</string>
+			<key>_black_classicbuckle</key>
+			<string>Black Classic Buckle</string>
+			<key>_milanese</key>
+			<string>Milanese Loop</string>
+			<key>_black_leatherloop</key>
+			<string>Black Leather Loop</string>
+			<key>_brightblue_leatherloop</key>
+			<string>Bright Blue Leather Loop</string>
+			<key>_stone_leatherloop</key>
+			<string>Stone Leather Loop</string>
+			<key>_lightbrown_leatherloop</key>
+			<string>Light Brown Leather Loop</string>
+			<key>_black_modernbuckle</key>
+			<string>Black Modern Buckle</string>
+			<key>_midnightblue_modernbuckle</key>
+			<string>Midnight Blue Modern Buckle</string>
+			<key>_softpink_modernbuckle</key>
+			<string>Soft Pink Modern Buckle</string>
+			<key>_brown_modernbuckle</key>
+			<string>Brown Modern Buckle</string>
+			<key>_linkbracelet</key>
+			<string>Link Bracelet</string>
+			<key>_spaceblackstainless_linkbracelet</key>
+			<string>Space Black Link Bracelet</string>
+			<key>_midnightblue_classicbuckle</key>
+			<string>Midnight Blue Classic Buckle</string>
+			<key>_rosegray_modernbuckle</key>
+			<string>Rose Gray Modern Buckle</string>
+			<key>_brightred_modernbuckle</key>
+			<string>Bright Red Modern Buckle</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

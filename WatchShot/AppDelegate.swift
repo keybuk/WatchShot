@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  WatchShot
 //
-//  Created by Scott James Remnant on 5/9/15.
+//  Created by Scott James Remnant on 5/7/15.
 //  Copyright (c) 2015 Scott James Remnant. All rights reserved.
 //
 
@@ -11,11 +11,15 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    let watchManager: WatchManager = WatchManager.sharedInstance
+    let storeKeeper: StoreKeeper = StoreKeeper.sharedInstance
+    
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
         return true
     }
 
@@ -25,12 +29,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        // Save the selected model if the compose view controller is on top of the stack.
+        if let navigationController = window?.rootViewController as? UINavigationController,
+            composeViewController = navigationController.topViewController as? ComposeViewController {
+                composeViewController.saveSelectedModel()
+        }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        // Return to the screenshot picker, and reset it to the initial state, provided it's the root in the stack.
+        if let navigationController = window?.rootViewController as? UINavigationController,
+            pickerViewController = navigationController.viewControllers.first as? PickerViewController {
+                navigationController.popToRootViewControllerAnimated(false)
+                pickerViewController.resetToInitialState()
+        }
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
