@@ -8,12 +8,12 @@
 
 import UIKit
 
-/// :returns: a UILabel for use in the UINavigationitem titleView.
+/// - returns: a UILabel for use in the UINavigationitem titleView.
 func cuteTitleView() -> UILabel {
     let watchAttrs = [ NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 17.0)!, NSForegroundColorAttributeName: UIColor.whiteColor() ]
     let shotAttrs = [ NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 17.0)!, NSForegroundColorAttributeName: UIColor.whiteColor() ]
     
-    var titleString = NSMutableAttributedString(string: "WATCH", attributes: watchAttrs)
+    let titleString = NSMutableAttributedString(string: "WATCH", attributes: watchAttrs)
     titleString.appendAttributedString(NSAttributedString(string: " SHOT", attributes: shotAttrs))
     
     let titleLabel = UILabel(frame: CGRectMake(0.0, 0.0, titleString.size().width, titleString.size().height))
@@ -60,7 +60,7 @@ class ReplaceSegue: UIStoryboardSegue {
 /// Used for transitions between the loading, no screenshots, authorization error, and picker views.
 class FadeInAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.35
     }
     
@@ -84,7 +84,7 @@ class FadeInAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 /// Animator for transitions between the Picker and Compose view.
 class PickerComposeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.35
     }
     

@@ -59,7 +59,7 @@ class StoreKeeper: NSObject {
     
     /// Submit a purchase for the given product.
     func createPurchase(product: SKProduct) {
-        var payment = SKMutablePayment(product: product)
+        let payment = SKMutablePayment(product: product)
         payment.quantity = 1
         
         SKPaymentQueue.defaultQueue().addPayment(payment)
@@ -70,12 +70,11 @@ class StoreKeeper: NSObject {
 // MARK: SKPaymentTransactionObserver
 extension StoreKeeper: SKPaymentTransactionObserver {
     
-    func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
+    func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         let paymentQueue = SKPaymentQueue.defaultQueue()
 
         var updateReceipt: Bool = false
         for transaction in transactions {
-            let transaction = transaction as! SKPaymentTransaction
             switch transaction.transactionState {
             case .Purchasing, .Deferred:
                 break
@@ -97,10 +96,10 @@ extension StoreKeeper: SKPaymentTransactionObserver {
 // MARK: SKProductsRequestDelegate
 extension StoreKeeper: SKProductsRequestDelegate {
     
-    func productsRequest(request: SKProductsRequest!, didReceiveResponse response: SKProductsResponse!) {
+    func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
         let watchManager = WatchManager.sharedInstance
 
-        for product in response.products as! [SKProduct] {
+        for product in response.products {
             let watchModel = watchManager.modelForProductIdentifier(product.productIdentifier)!
             watchModel.product = product
         }
@@ -111,10 +110,10 @@ extension StoreKeeper: SKProductsRequestDelegate {
 // MARK: SKRequestDelegate
 extension StoreKeeper: SKRequestDelegate {
     
-    func request(request: SKRequest!, didFailWithError error: NSError!) {
+    func request(request: SKRequest, didFailWithError error: NSError) {
     }
     
-    func requestDidFinish(request: SKRequest!) {
+    func requestDidFinish(request: SKRequest) {
         dispatch_async(dispatch_get_main_queue()) {
             self.checkReceipt()
         }

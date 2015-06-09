@@ -93,7 +93,7 @@ class ComposeViewController: UIViewController {
         // Scroll to the selected model and update the display for it.
         updateViewForSelectedModel()
         if let selectedModel = selectedModel,
-            index = find(watchSize.models, selectedModel) {
+            index = watchSize.models.indexOf(selectedModel) {
                 collectionView?.layoutIfNeeded()
                 collectionView?.scrollToItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
         }
@@ -335,10 +335,9 @@ extension ComposeViewController: SwiftColorPickerDelegate {
 // MARK: SKPaymentTransactionObserver
 extension ComposeViewController: SKPaymentTransactionObserver {
     
-    func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
+    func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         var refresh = false
         for transaction in transactions {
-            let transaction = transaction as! SKPaymentTransaction
             switch transaction.transactionState {
             case .Failed, .Purchased, .Restored:
                 refresh = true

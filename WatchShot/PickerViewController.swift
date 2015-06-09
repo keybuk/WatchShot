@@ -203,7 +203,7 @@ class PickerViewCell: UICollectionViewCell {
 // MARK: PHPhotoLibraryChangeObserver
 extension PickerViewController: PHPhotoLibraryChangeObserver {
     
-    func photoLibraryDidChange(changeInstance: PHChange!) {
+    func photoLibraryDidChange(changeInstance: PHChange) {
         func indexPathsFromIndexSet(indexSet: NSIndexSet) -> [NSIndexPath] {
             var indexPaths: [NSIndexPath] = []
             for index in indexSet {

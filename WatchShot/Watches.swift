@@ -33,7 +33,7 @@ class WatchManager {
         self.sizes = sizes
     }
     
-    /// :returns: WatchSize that has screenshots of the given size.
+    /// - returns: WatchSize that has screenshots of the given size.
     func sizeForScreenshotSize(screenshotSize: CGSize) -> WatchSize? {
         for watchSize in sizes {
             if CGSizeEqualToSize(screenshotSize, watchSize.screenshotSize) {
@@ -44,7 +44,7 @@ class WatchManager {
         return nil
     }
     
-    /// :returns: the set of all product identifiers.
+    /// - returns: the set of all product identifiers.
     func productIdentifiers() -> [String] {
         var productIdentifiers = [String]()
         for watchSize in sizes {
@@ -57,7 +57,7 @@ class WatchManager {
         return productIdentifiers
     }
     
-    /// :returns: the watch model corresponding to the given product identifier.
+    /// - returns: the watch model corresponding to the given product identifier.
     func modelForProductIdentifier(productIdentifier: String) -> WatchModel? {
         for watchSize in sizes {
             for watchModel in watchSize._models {
@@ -118,7 +118,7 @@ class WatchSize {
         }
     }
     
-    /// :returns: the watch model corresponding to the given filename suffix.
+    /// - returns: the watch model corresponding to the given filename suffix.
     func modelForFilenameSuffix(filenameSuffix: String) -> WatchModel? {
         for watchModel in models {
             if watchModel.filenameSuffix == filenameSuffix {
@@ -219,7 +219,7 @@ class WatchModel: Equatable {
         self.bandDescription = bandDescription
     }
     
-    /// :returns: An attributed string containing the complete description of the model.
+    /// - returns: An attributed string containing the complete description of the model.
     func attributedString() -> NSAttributedString {
         let appleFont = UIFont(name: "HelveticaNeue-Bold", size: 17.0)!
         let modelFont = UIFont(name: "HelveticaNeue", size: 17.0)!
@@ -237,7 +237,7 @@ class WatchModel: Equatable {
         let caseString = NSAttributedString(string: "\(caseDescription)\n", attributes: [NSFontAttributeName: lightFont])
         let bandString = NSAttributedString(string: "\(bandDescription)", attributes: [NSFontAttributeName: lightFont])
 
-        var attributedString = NSMutableAttributedString()
+        let attributedString = NSMutableAttributedString()
         attributedString.appendAttributedString(appleString)
         attributedString.appendAttributedString(modelString)
         attributedString.appendAttributedString(caseString)
@@ -246,7 +246,7 @@ class WatchModel: Equatable {
     }
 
 
-    /// :returns: A new image composed of the watch model image and the screenshot.
+    /// - returns: A new image composed of the watch model image and the screenshot.
     func createImageForScreenshot(screenshot: UIImage, backgroundColor: UIColor? = nil) -> UIImage {
         let imageRect = CGRectMake(0.0, 0.0, watchSize.imageSize.width, watchSize.imageSize.height)
         let screenshotRect = CGRectMake((watchSize.imageSize.width - watchSize.screenshotSize.width) / 2.0, (watchSize.imageSize.height - watchSize.screenshotSize.height) / 2.0, watchSize.screenshotSize.width, watchSize.screenshotSize.height)

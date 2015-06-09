@@ -32,7 +32,7 @@ class CollectionViewCellPagedFlowLayout: UICollectionViewFlowLayout {
         
         var nextOffset = proposedContentOffset.x + offSetAdjustment
         
-        do {
+        repeat {
             targetContentOffset.x = nextOffset
             let deltaX = proposedContentOffset.x - collectionView!.contentOffset.x
             let velX = velocity.x
