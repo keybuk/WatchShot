@@ -233,7 +233,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Scott James Remnant";
 				TargetAttributes = {
 					D258337A1AFECF7B00C33902 = {
@@ -381,6 +381,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -456,6 +457,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../Third Party/openssl-1.0.1m-iOS/lib\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.netsplit.WatchShot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WatchShot/WatchShot-Bridging-Header.h";
@@ -479,6 +481,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../Third Party/openssl-1.0.1m-iOS/lib\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.netsplit.WatchShot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WatchShot/WatchShot-Bridging-Header.h";
@@ -500,6 +503,7 @@
 				);
 				INFOPLIST_FILE = WatchShotTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netsplit.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchShot.app/WatchShot";
 			};
@@ -515,6 +519,7 @@
 				);
 				INFOPLIST_FILE = WatchShotTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netsplit.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchShot.app/WatchShot";
 			};
