@@ -227,6 +227,8 @@ extension PickerViewController: PHPhotoLibraryChangeObserver {
                                 self.collectionView.insertItemsAtIndexPaths(insertedIndexPaths)
                             }
                         }
+                    }, completion: { finished in
+                        // Changed indexes doesn't match the expected input for UICollectionView because the indexes are post-updates, not pre. Since the data set is the right size, we can do these changes, and the moves, in a completion block.
                         if let changedIndexes = fetchResultChanges.changedIndexes {
                             let changedIndexPaths = indexPathsFromIndexSet(changedIndexes)
                             if changedIndexPaths.count > 0 {
@@ -241,10 +243,8 @@ extension PickerViewController: PHPhotoLibraryChangeObserver {
                                 self.collectionView.moveItemAtIndexPath(fromIndexPath, toIndexPath: toIndexPath)
                             }
                         }
-
-                    }, completion: { finished in
+                        
                         self.scrollToFirstScreenshot()
-
                     })
                 } else {
                     self.collectionView.reloadData()
