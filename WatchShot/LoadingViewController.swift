@@ -93,6 +93,8 @@ class LoadingViewController: UIViewController {
         case .Authorized:
             if fetchResult?.count > 0 {
                 navigationController?.topViewController.performSegueWithIdentifier("LoadedSegue", sender: self)
+                // We might get another fetch result change before this view is unloaded, so ensure we don't try and perform a segue again.
+                canSegue = false
             } else if fetchResult != nil {
                 // Only perform this segue if we're not expecting an immediate change on the fetch result, this avoids an unnecessary extra view controller change.
                 if !expectingFetchResultChange {
