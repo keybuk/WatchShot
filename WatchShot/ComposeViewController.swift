@@ -115,7 +115,7 @@ class ComposeViewController: UIViewController {
             
             switch selectedModel.ownership {
             case .Free, .Owned:
-                shareBuyButton.setTitle("Share", forState: .Normal)
+                shareBuyButton.setTitle("Share or Save", forState: .Normal)
                 shareBuyButton.enabled = true
                 restorePurchasesButton.hidden = true
             case .ForSale:

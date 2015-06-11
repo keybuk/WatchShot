@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vBy-Yc-sSF">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vBy-Yc-sSF">
                                 <rect key="frame" x="0.0" y="165" width="600" height="270"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -67,7 +67,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mc-C7-Mbg" userLabel="Description Label">
-                                <rect key="frame" x="16" y="84" width="568" height="61"/>
+                                <rect key="frame" x="16" y="84" width="568" height="60.5"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="EqW-k3-U7t"/>
@@ -106,17 +106,17 @@ White Sport Band</string>
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qP-zn-swE">
-                                <rect key="frame" x="271" y="475" width="59" height="39"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qP-zn-swE" userLabel="Share Button">
+                                <rect key="frame" x="16" y="475" width="568" height="32"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <state key="normal" title="Share"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <state key="normal" title="Share or Save"/>
                                 <connections>
                                     <action selector="shareOrBuy:" destination="dpW-pW-hsp" eventType="touchUpInside" id="iYN-lg-bmb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qs-oI-tvd">
-                                <rect key="frame" x="236" y="522" width="129" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qs-oI-tvd" userLabel="Restore Purchases Button">
+                                <rect key="frame" x="16" y="515" width="568" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Restore Purchases">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -125,7 +125,7 @@ White Sport Band</string>
                                     <action selector="restorePurchases:" destination="dpW-pW-hsp" eventType="touchUpInside" id="bdF-zC-Jet"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxm-nP-xMP">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxm-nP-xMP" userLabel="Picker Button">
                                 <rect key="frame" x="567" y="402" width="28" height="28"/>
                                 <animations/>
                                 <state key="normal" image="picker">
@@ -143,10 +143,12 @@ White Sport Band</string>
                             <constraint firstItem="8mc-C7-Mbg" firstAttribute="centerX" secondItem="4qP-zn-swE" secondAttribute="centerX" id="0r5-u2-pNm"/>
                             <constraint firstItem="xxm-nP-xMP" firstAttribute="trailing" secondItem="vBy-Yc-sSF" secondAttribute="trailing" constant="-5" id="5bd-JX-8b5"/>
                             <constraint firstItem="8mc-C7-Mbg" firstAttribute="leading" secondItem="zdg-V5-rhI" secondAttribute="leading" id="7bi-r6-JtU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4qP-zn-swE" secondAttribute="trailing" id="7cp-Rr-ULk"/>
                             <constraint firstItem="xxm-nP-xMP" firstAttribute="centerY" secondItem="4qP-zn-swE" secondAttribute="centerY" id="7le-Qu-XLG"/>
                             <constraint firstItem="qkp-aB-UZy" firstAttribute="top" secondItem="4qP-zn-swE" secondAttribute="bottom" constant="72" id="8bg-4l-y14"/>
                             <constraint firstItem="vBy-Yc-sSF" firstAttribute="top" secondItem="8mc-C7-Mbg" secondAttribute="bottom" constant="20" id="BHb-Sp-uSS"/>
                             <constraint firstAttribute="centerY" secondItem="vBy-Yc-sSF" secondAttribute="centerY" id="Bax-jx-NPT"/>
+                            <constraint firstItem="9Qs-oI-tvd" firstAttribute="leading" secondItem="zdg-V5-rhI" secondAttribute="leadingMargin" id="CYY-Wb-e6e"/>
                             <constraint firstAttribute="trailing" secondItem="8mc-C7-Mbg" secondAttribute="trailing" id="D6f-xi-CTw"/>
                             <constraint firstItem="xxm-nP-xMP" firstAttribute="leading" secondItem="4qP-zn-swE" secondAttribute="trailing" constant="108" id="DTb-RQ-pxr"/>
                             <constraint firstItem="vBy-Yc-sSF" firstAttribute="leading" secondItem="xxm-nP-xMP" secondAttribute="trailing" constant="-228" id="E99-zn-Ypa"/>
@@ -156,6 +158,7 @@ White Sport Band</string>
                             <constraint firstItem="8mc-C7-Mbg" firstAttribute="top" secondItem="awH-aR-Iml" secondAttribute="bottom" id="OeM-Sb-VOe"/>
                             <constraint firstItem="xxm-nP-xMP" firstAttribute="leading" secondItem="vBy-Yc-sSF" secondAttribute="trailing" constant="-200" id="QDB-WH-mnF"/>
                             <constraint firstItem="8mc-C7-Mbg" firstAttribute="leading" secondItem="zdg-V5-rhI" secondAttribute="leadingMargin" id="QjD-A1-ZqV"/>
+                            <constraint firstItem="4qP-zn-swE" firstAttribute="top" secondItem="vBy-Yc-sSF" secondAttribute="bottom" constant="40" id="X1T-HT-doW"/>
                             <constraint firstItem="8mc-C7-Mbg" firstAttribute="top" secondItem="awH-aR-Iml" secondAttribute="bottom" constant="20" id="Y1l-WJ-7nH"/>
                             <constraint firstItem="xxm-nP-xMP" firstAttribute="leading" secondItem="vBy-Yc-sSF" secondAttribute="trailing" constant="-200" id="Y3g-0X-FpZ"/>
                             <constraint firstItem="vBy-Yc-sSF" firstAttribute="leading" secondItem="zdg-V5-rhI" secondAttribute="leadingMargin" id="gxt-uO-QA8"/>
@@ -170,6 +173,8 @@ White Sport Band</string>
                             <constraint firstItem="8mc-C7-Mbg" firstAttribute="leading" secondItem="zdg-V5-rhI" secondAttribute="leadingMargin" id="rbu-7Q-SEp"/>
                             <constraint firstItem="xxm-nP-xMP" firstAttribute="bottom" secondItem="vBy-Yc-sSF" secondAttribute="bottom" constant="-5" id="sPJ-5i-bqG"/>
                             <constraint firstAttribute="trailing" secondItem="8mc-C7-Mbg" secondAttribute="trailingMargin" id="u7D-WT-9YD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Qs-oI-tvd" secondAttribute="trailing" id="uVa-DK-W1h"/>
+                            <constraint firstItem="4qP-zn-swE" firstAttribute="leading" secondItem="zdg-V5-rhI" secondAttribute="leadingMargin" id="vNC-pp-Mqt"/>
                             <constraint firstAttribute="centerX" secondItem="vBy-Yc-sSF" secondAttribute="centerX" id="vy9-CP-w8d"/>
                             <constraint firstItem="vBy-Yc-sSF" firstAttribute="leading" secondItem="zdg-V5-rhI" secondAttribute="leading" id="y2R-P1-z3d"/>
                         </constraints>
@@ -186,6 +191,8 @@ White Sport Band</string>
                                 <exclude reference="NHm-lP-EZp"/>
                                 <exclude reference="gxt-uO-QA8"/>
                                 <exclude reference="vy9-CP-w8d"/>
+                                <exclude reference="04m-E8-CcF"/>
+                                <exclude reference="G5E-FR-trT"/>
                                 <exclude reference="hOA-Rx-XDA"/>
                                 <exclude reference="jUy-zV-O3d"/>
                                 <exclude reference="pHa-HN-l0y"/>
@@ -242,8 +249,8 @@ White Sport Band</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jHl-cQ-Boe">
-                                <rect key="frame" x="0.0" y="125" width="600" height="350"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jHl-cQ-Boe">
+                                <rect key="frame" x="0.0" y="124.5" width="600" height="351"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -291,14 +298,14 @@ White Sport Band</string>
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just now" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TL-fn-cGX" userLabel="Date Label">
-                                <rect key="frame" x="265" y="84" width="70" height="21"/>
+                                <rect key="frame" x="265" y="84" width="69.5" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap a screenshot" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mR0-XO-tN1" userLabel="Instruction Label">
-                                <rect key="frame" x="249" y="485" width="103" height="16"/>
+                                <rect key="frame" x="249" y="485" width="102.5" height="16"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
