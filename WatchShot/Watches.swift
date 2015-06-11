@@ -237,7 +237,7 @@ class WatchModel: Equatable {
         let caseString = NSAttributedString(string: "\(caseDescription)\n", attributes: [NSFontAttributeName: lightFont])
         let bandString = NSAttributedString(string: "\(bandDescription)", attributes: [NSFontAttributeName: lightFont])
 
-        var attributedString = NSMutableAttributedString()
+        let attributedString = NSMutableAttributedString()
         attributedString.appendAttributedString(appleString)
         attributedString.appendAttributedString(modelString)
         attributedString.appendAttributedString(caseString)

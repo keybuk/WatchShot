@@ -145,7 +145,7 @@ extension PickerViewController: UICollectionViewDataSource {
         
         let imageManager = PHImageManager.defaultManager()
         let imageRequestOptions = PHImageRequestOptions()
-        imageManager.requestImageForAsset(asset, targetSize: assetSize, contentMode: PHImageContentMode.AspectFill, options: PHImageRequestOptions(), resultHandler: { screenshot, info in
+        imageManager.requestImageForAsset(asset, targetSize: assetSize, contentMode: PHImageContentMode.AspectFill, options: imageRequestOptions, resultHandler: { screenshot, info in
             cell.setScreenshot(screenshot, watchSize: watchSize)
         })
 
@@ -220,10 +220,6 @@ extension PickerViewController: PHPhotoLibraryChangeObserver {
                 if let collectionView = self.collectionView {
                     if fetchResultChanges.hasIncrementalChanges {
                         collectionView.performBatchUpdates({
-                            var removedIndexPaths: [NSIndexPath]?
-                            var insertedIndexPaths: [NSIndexPath]?
-                            var changedIndexPaths: [NSIndexPath]?
-                            
                             if let removedIndexes = fetchResultChanges.removedIndexes {
                                 let removedIndexPaths = indexPathsFromIndexSet(removedIndexes)
                                 if removedIndexPaths.count > 0 {

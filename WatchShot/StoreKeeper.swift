@@ -59,7 +59,7 @@ class StoreKeeper: NSObject {
     
     /// Submit a purchase for the given product.
     func createPurchase(product: SKProduct) {
-        var payment = SKMutablePayment(product: product)
+        let payment = SKMutablePayment(product: product)
         payment.quantity = 1
         
         SKPaymentQueue.defaultQueue().addPayment(payment)

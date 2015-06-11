@@ -135,7 +135,7 @@ public class SwiftColorPickerViewController: UIViewController
     
     func handleGestureRecognizer(recognizer: UIGestureRecognizer)
     {
-        var point = recognizer.locationInView(self.colorPaletteView)
+        let point = recognizer.locationInView(self.colorPaletteView)
         positionSelectorViewWithPoint(point)
         if (recognizer.state == UIGestureRecognizerState.Began)
         {
@@ -161,8 +161,8 @@ public class SwiftColorPickerViewController: UIViewController
         
         let metrics = ["diameter" : colorPreviewDiameter, "pad" : pad]
         
-        var constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-pad-[selectionView(diameter)]", options: nil, metrics: metrics, views: views)
-        var constV2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-pad-[selectionView(diameter)]", options: nil, metrics: metrics, views: views)
+        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-pad-[selectionView(diameter)]", options: nil, metrics: metrics, views: views)
+        let constV2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-pad-[selectionView(diameter)]", options: nil, metrics: metrics, views: views)
         colorPaletteView.addConstraints(constH2)
         colorPaletteView.addConstraints(constV2)
         
@@ -247,7 +247,7 @@ public class SwiftColorPickerViewController: UIViewController
             for x in 0..<numColorsX
             {
                 let path = UIBezierPath()
-                var start = CGPointMake(CGFloat(x)*w+CGFloat(coloredBorderWidth),CGFloat(y)*h+CGFloat(coloredBorderWidth))
+                let start = CGPointMake(CGFloat(x)*w+CGFloat(coloredBorderWidth),CGFloat(y)*h+CGFloat(coloredBorderWidth))
                 path.moveToPoint(start);
                 path.addLineToPoint(CGPointMake(start.x+w, start.y))
                 path.addLineToPoint(CGPointMake(start.x+w, start.y+h))

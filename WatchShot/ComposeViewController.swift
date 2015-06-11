@@ -141,7 +141,6 @@ class ComposeViewController: UIViewController {
     
     /// Load the last selected model and store in selectedModel.
     func loadSelectedModel() {
-        let watchManager = WatchManager.sharedInstance
         let defaults = NSUserDefaults.standardUserDefaults()
         
         if let filenameSuffix = defaults.stringForKey("lastSelectedModel\(watchSize.filenamePrefix)"),

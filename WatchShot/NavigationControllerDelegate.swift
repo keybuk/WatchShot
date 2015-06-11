@@ -13,7 +13,7 @@ func cuteTitleView() -> UILabel {
     let watchAttrs = [ NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 17.0)!, NSForegroundColorAttributeName: UIColor.whiteColor() ]
     let shotAttrs = [ NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 17.0)!, NSForegroundColorAttributeName: UIColor.whiteColor() ]
     
-    var titleString = NSMutableAttributedString(string: "WATCH", attributes: watchAttrs)
+    let titleString = NSMutableAttributedString(string: "WATCH", attributes: watchAttrs)
     titleString.appendAttributedString(NSAttributedString(string: " SHOT", attributes: shotAttrs))
     
     let titleLabel = UILabel(frame: CGRectMake(0.0, 0.0, titleString.size().width, titleString.size().height))
@@ -66,8 +66,7 @@ class FadeInAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView()
-        if let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey),
-            toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) {
+        if let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) {
                 containerView.addSubview(toViewController.view)
                 toViewController.view.alpha = 0.0
                 

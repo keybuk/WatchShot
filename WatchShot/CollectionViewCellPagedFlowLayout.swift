@@ -20,7 +20,7 @@ class CollectionViewCellPagedFlowLayout: UICollectionViewFlowLayout {
         let horizontalCenter = proposedContentOffset.x + (collectionView!.bounds.size.width / 2.0)
         let targetRect = CGRect(x: proposedContentOffset.x, y: 0.0, width: collectionView!.bounds.size.width, height: collectionView!.bounds.size.height)
         
-        var array = layoutAttributesForElementsInRect(targetRect) as! [UICollectionViewLayoutAttributes]
+        let array = layoutAttributesForElementsInRect(targetRect) as! [UICollectionViewLayoutAttributes]
         for layoutAttributes in array {
             if layoutAttributes.representedElementCategory == UICollectionElementCategory.Cell {
                 let itemHorizontalCenter = layoutAttributes.center.x

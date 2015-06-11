@@ -49,7 +49,7 @@ class LoadingViewController: UIViewController {
             NSPredicate(format: "pixelWidth == \(watchSize.screenshotSize.width) && pixelHeight == \(watchSize.screenshotSize.height)")
         }
 
-        var fetchOptions = PHFetchOptions()
+        let fetchOptions = PHFetchOptions()
         fetchOptions.predicate = NSCompoundPredicate(type: NSCompoundPredicateType.OrPredicateType, subpredicates: sizePredicates)
         fetchOptions.sortDescriptors = [ NSSortDescriptor(key: "creationDate", ascending: false) ]
 
@@ -128,7 +128,6 @@ extension LoadingViewController: PHPhotoLibraryChangeObserver {
         dispatch_async(dispatch_get_main_queue()) {
             if let fetchResultChanges = changeInstance.changeDetailsForFetchResult(self.fetchResult) {
                 self.fetchResult = fetchResultChanges.fetchResultAfterChanges
-                println("NEW FETCH WITH \(self.fetchResult!.count) ITEMS")
                 self.expectingFetchResultChange = false
                 self.updateViewControllers()
             }
