@@ -13,8 +13,8 @@ import Photos
 /// View to indicate that there is an authorization error accessing the photo library.
 class AuthorizationErrorViewController: UIViewController {
     
-    @IBOutlet weak var messageLabel: UILabel?
-    @IBOutlet weak var messageLabelYConstraint: NSLayoutConstraint?
+    @IBOutlet var messageLabel: UILabel!
+    @IBOutlet var messageLabelYConstraint: NSLayoutConstraint!
 
     /// Vertical offset from the center so we show the "not determined" message above the alert.
     let alertOffset: CGFloat = 100.0
@@ -32,17 +32,17 @@ class AuthorizationErrorViewController: UIViewController {
         let authorizationStatus = PHPhotoLibrary.authorizationStatus()
         switch authorizationStatus {
         case .NotDetermined:
-            messageLabel?.text = "Please authorize access to your Photos."
-            messageLabelYConstraint?.constant = alertOffset
+            messageLabel.text = "Please authorize access to your Photos."
+            messageLabelYConstraint.constant = alertOffset
         case .Restricted:
-            messageLabel?.text = "Access to your Photos is restricted. Please ask your parent, guardian or system administrator."
-            messageLabelYConstraint?.constant = 0.0
+            messageLabel.text = "Access to your Photos is restricted. Please ask your parent, guardian or system administrator."
+            messageLabelYConstraint.constant = 0.0
         case .Denied:
-            messageLabel?.text = "Please authorize access to your Photos in the Settings app."
-            messageLabelYConstraint?.constant = 0.0
+            messageLabel.text = "Please authorize access to your Photos in the Settings app."
+            messageLabelYConstraint.constant = 0.0
         default:
-            messageLabel?.text = "Something went wrong."
-            messageLabelYConstraint?.constant = 0.0
+            messageLabel.text = "Something went wrong."
+            messageLabelYConstraint.constant = 0.0
         }
     }
 

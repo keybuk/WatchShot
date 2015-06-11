@@ -12,8 +12,8 @@ import Photos
 /// The picker view presents a carousel of screenshots from the photo library for the user to select. Tapping one will take the user to the compose view controller.
 class PickerViewController: UIViewController {
     
-    @IBOutlet weak var dateLabel: UILabel?
-    @IBOutlet weak var collectionView: UICollectionView?
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var collectionView: UICollectionView!
     
     /// We don't show the watch screenshots quite at full-size, in order to carousel them better.
     let imageScale: CGFloat = 0.75
@@ -46,27 +46,25 @@ class PickerViewController: UIViewController {
         }
         
         // Layout the collection view.
-        if let collectionView = collectionView {
-            // The collection view hasn't got the right bounds yet, update the layout now so it does.
-            collectionView.layoutIfNeeded()
-            
-            let flowLayout = collectionView.collectionViewLayout as! CollectionViewCellPagedFlowLayout
-            flowLayout.itemSize = CGSizeMake(largestSize.width * imageScale, largestSize.height * imageScale)
-            
-            // Fiddle with the insets of the flow layout so that the first and last items appear centered.
-            let inset = (collectionView.bounds.width - flowLayout.itemSize.width) / 2.0
-            flowLayout.sectionInset.left = inset
-            flowLayout.sectionInset.right = inset
-            
-            // Lay out horizontally with a gap between.
-            flowLayout.minimumInteritemSpacing = 0.0
-            flowLayout.minimumLineSpacing = 40.0
-            flowLayout.scrollDirection = .Horizontal
-        }
+        // The collection view hasn't got the right bounds yet, update the layout now so it does.
+        collectionView.layoutIfNeeded()
+        
+        let flowLayout = collectionView.collectionViewLayout as! CollectionViewCellPagedFlowLayout
+        flowLayout.itemSize = CGSizeMake(largestSize.width * imageScale, largestSize.height * imageScale)
+        
+        // Fiddle with the insets of the flow layout so that the first and last items appear centered.
+        let inset = (collectionView.bounds.width - flowLayout.itemSize.width) / 2.0
+        flowLayout.sectionInset.left = inset
+        flowLayout.sectionInset.right = inset
+        
+        // Lay out horizontally with a gap between.
+        flowLayout.minimumInteritemSpacing = 0.0
+        flowLayout.minimumLineSpacing = 40.0
+        flowLayout.scrollDirection = .Horizontal
         
         // Set the date label to that of the first screenshot.
         if let asset = fetchResult.firstObject as? PHAsset {
-            dateLabel?.text = asset.creationDate.timeAgo
+            dateLabel.text = asset.creationDate.timeAgo
         }
         
         navigationItem.titleView = cuteTitleView()
@@ -77,9 +75,9 @@ class PickerViewController: UIViewController {
         super.viewWillAppear(animated)
 
         // Clear the selection on apperance as UIContainerViewController does.
-        if let indexPaths = collectionView?.indexPathsForSelectedItems() as? [NSIndexPath] {
+        if let indexPaths = collectionView.indexPathsForSelectedItems() as? [NSIndexPath] {
             for indexPath in indexPaths {
-                collectionView?.deselectItemAtIndexPath(indexPath, animated: false)
+                collectionView.deselectItemAtIndexPath(indexPath, animated: false)
             }
         }
     }
@@ -88,37 +86,36 @@ class PickerViewController: UIViewController {
         if segue.identifier == "ComposeSegue" {
             let composeViewController = segue.destinationViewController as! ComposeViewController
             
-            if let indexPath = collectionView?.indexPathsForSelectedItems().first as? NSIndexPath,
-                pickerViewCell = collectionView?.cellForItemAtIndexPath(indexPath) as? PickerViewCell {
-                    composeViewController.watchSize = pickerViewCell.watchSize
-                    composeViewController.screenshot = pickerViewCell.screenshot
+            if let indexPath = collectionView.indexPathsForSelectedItems().first as? NSIndexPath,
+                pickerViewCell = collectionView.cellForItemAtIndexPath(indexPath) as? PickerViewCell
+            {
+                composeViewController.watchSize = pickerViewCell.watchSize
+                composeViewController.screenshot = pickerViewCell.screenshot
             }
         }
     }
 
     /// Resets the carousel to the first screenshot without animating
     func resetToInitialState() {
-        collectionView?.scrollToItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
+        collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
     }
 
     /// Scroll the carousel to the first screenshot.
     func scrollToFirstScreenshot() {
         // First check to see if the screenshot is already in the center of the view.
-        if let collectionView = collectionView {
-            let center = collectionView.convertPoint(collectionView.center, fromView: view)
-            if let indexPath = collectionView.indexPathForItemAtPoint(center) {
-                if indexPath.item == 0 {
-                    // It is, just update the date label in case the screenshot changed.
-                    if let asset = fetchResult.firstObject as? PHAsset {
-                        dateLabel?.text = asset.creationDate.timeAgo
-                    }
-                    return
-                }
+        let center = collectionView.convertPoint(collectionView.center, fromView: view)
+        if let indexPath = collectionView.indexPathForItemAtPoint(center)
+            where indexPath.item == 0
+        {
+            // It is, just update the date label in case the screenshot changed.
+            if let asset = fetchResult.firstObject as? PHAsset {
+                dateLabel.text = asset.creationDate.timeAgo
             }
-            
-            // Screenshot in the center of the view is not the first, scroll to it.
-            collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
+            return
         }
+        
+        // Screenshot in the center of the view is not the first, scroll to it.
+        collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
     }
 
 }
@@ -169,12 +166,11 @@ extension PickerViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         // Update the date label as the carousel is scrolled left and right to always refer to the image in the center.
-        if let collectionView = collectionView {
-            let center = collectionView.convertPoint(collectionView.center, fromView: view)
-            if let indexPath = collectionView.indexPathForItemAtPoint(center),
-                asset = fetchResult[indexPath.item] as? PHAsset {
-                    dateLabel?.text = asset.creationDate.timeAgo
-            }
+        let center = collectionView.convertPoint(collectionView.center, fromView: view)
+        if let indexPath = collectionView.indexPathForItemAtPoint(center),
+            asset = fetchResult[indexPath.item] as? PHAsset
+        {
+            dateLabel.text = asset.creationDate.timeAgo
         }
     }
 }
@@ -182,7 +178,7 @@ extension PickerViewController: UIScrollViewDelegate {
 /// Cell within the collection view, holds a reference to the screenshot and its size, and an outlet to its image view which it auto-updates.
 class PickerViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var screenshotView: UIImageView?
+    @IBOutlet var screenshotView: UIImageView!
 
     /// Screenshot image.
     var screenshot: UIImage?
@@ -195,7 +191,7 @@ class PickerViewCell: UICollectionViewCell {
         self.watchSize = watchSize
         self.screenshot = screenshot
 
-        screenshotView?.image = screenshot
+        screenshotView.image = screenshot
     }
 
 }
@@ -205,7 +201,7 @@ extension PickerViewController: PHPhotoLibraryChangeObserver {
     
     func photoLibraryDidChange(changeInstance: PHChange!) {
         func indexPathsFromIndexSet(indexSet: NSIndexSet) -> [NSIndexPath] {
-            var indexPaths: [NSIndexPath] = []
+            var indexPaths = [NSIndexPath]()
             for index in indexSet {
                 indexPaths.append(NSIndexPath(forItem: index, inSection: 0))
             }
@@ -217,44 +213,42 @@ extension PickerViewController: PHPhotoLibraryChangeObserver {
                 self.fetchResult = fetchResultChanges.fetchResultAfterChanges
                 
                 // Update the collection view.
-                if let collectionView = self.collectionView {
-                    if fetchResultChanges.hasIncrementalChanges {
-                        collectionView.performBatchUpdates({
-                            if let removedIndexes = fetchResultChanges.removedIndexes {
-                                let removedIndexPaths = indexPathsFromIndexSet(removedIndexes)
-                                if removedIndexPaths.count > 0 {
-                                    collectionView.deleteItemsAtIndexPaths(removedIndexPaths)
-                                }
+                if fetchResultChanges.hasIncrementalChanges {
+                    self.collectionView.performBatchUpdates({
+                        if let removedIndexes = fetchResultChanges.removedIndexes {
+                            let removedIndexPaths = indexPathsFromIndexSet(removedIndexes)
+                            if removedIndexPaths.count > 0 {
+                                self.collectionView.deleteItemsAtIndexPaths(removedIndexPaths)
                             }
-                            if let insertedIndexes = fetchResultChanges.insertedIndexes {
-                                let insertedIndexPaths = indexPathsFromIndexSet(insertedIndexes)
-                                if insertedIndexPaths.count > 0 {
-                                    collectionView.insertItemsAtIndexPaths(insertedIndexPaths)
-                                }
+                        }
+                        if let insertedIndexes = fetchResultChanges.insertedIndexes {
+                            let insertedIndexPaths = indexPathsFromIndexSet(insertedIndexes)
+                            if insertedIndexPaths.count > 0 {
+                                self.collectionView.insertItemsAtIndexPaths(insertedIndexPaths)
                             }
-                            if let changedIndexes = fetchResultChanges.changedIndexes {
-                                let changedIndexPaths = indexPathsFromIndexSet(changedIndexes)
-                                if changedIndexPaths.count > 0 {
-                                    collectionView.reloadItemsAtIndexPaths(changedIndexPaths)
-                                }
+                        }
+                        if let changedIndexes = fetchResultChanges.changedIndexes {
+                            let changedIndexPaths = indexPathsFromIndexSet(changedIndexes)
+                            if changedIndexPaths.count > 0 {
+                                self.collectionView.reloadItemsAtIndexPaths(changedIndexPaths)
                             }
-                            
-                            if fetchResultChanges.hasMoves {
-                                fetchResultChanges.enumerateMovesWithBlock{ fromIndex, toIndex in
-                                    let fromIndexPath = NSIndexPath(forItem: fromIndex, inSection: 0)
-                                    let toIndexPath = NSIndexPath(forItem: toIndex, inSection: 0)
-                                    collectionView.moveItemAtIndexPath(fromIndexPath, toIndexPath: toIndexPath)
-                                }
+                        }
+                        
+                        if fetchResultChanges.hasMoves {
+                            fetchResultChanges.enumerateMovesWithBlock{ fromIndex, toIndex in
+                                let fromIndexPath = NSIndexPath(forItem: fromIndex, inSection: 0)
+                                let toIndexPath = NSIndexPath(forItem: toIndex, inSection: 0)
+                                self.collectionView.moveItemAtIndexPath(fromIndexPath, toIndexPath: toIndexPath)
                             }
+                        }
 
-                        }, completion: { finished in
-                            self.scrollToFirstScreenshot()
-
-                        })
-                    } else {
-                        collectionView.reloadData()
+                    }, completion: { finished in
                         self.scrollToFirstScreenshot()
-                    }
+
+                    })
+                } else {
+                    self.collectionView.reloadData()
+                    self.scrollToFirstScreenshot()
                 }
             }
         }

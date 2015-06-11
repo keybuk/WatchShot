@@ -11,8 +11,8 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let watchManager: WatchManager = WatchManager.sharedInstance
-    let storeKeeper: StoreKeeper = StoreKeeper.sharedInstance
+    let watchManager = WatchManager.sharedInstance
+    let storeKeeper = StoreKeeper.sharedInstance
     
     var window: UIWindow?
 
@@ -31,17 +31,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Save the selected model if the compose view controller is on top of the stack.
         if let navigationController = window?.rootViewController as? UINavigationController,
-            composeViewController = navigationController.topViewController as? ComposeViewController {
-                composeViewController.saveSelectedModel()
+            composeViewController = navigationController.topViewController as? ComposeViewController
+        {
+            composeViewController.saveSelectedModel()
         }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Return to the screenshot picker, and reset it to the initial state, provided it's the root in the stack.
         if let navigationController = window?.rootViewController as? UINavigationController,
-            pickerViewController = navigationController.viewControllers.first as? PickerViewController {
-                navigationController.popToRootViewControllerAnimated(false)
-                pickerViewController.resetToInitialState()
+            pickerViewController = navigationController.viewControllers.first as? PickerViewController
+        {
+            navigationController.popToRootViewControllerAnimated(false)
+            pickerViewController.resetToInitialState()
         }
     }
 

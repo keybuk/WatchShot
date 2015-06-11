@@ -47,9 +47,10 @@ class ReplaceSegue: UIStoryboardSegue {
     
     override func perform() {
         if let sourceViewController = sourceViewController as? UIViewController,
-            destinationViewController = destinationViewController as? UIViewController {
-                sourceViewController.navigationController?.pushViewController(destinationViewController, animated: true)
-                sourceViewController.navigationController?.setViewControllers([destinationViewController], animated: false)
+            destinationViewController = destinationViewController as? UIViewController
+        {
+            sourceViewController.navigationController?.pushViewController(destinationViewController, animated: true)
+            sourceViewController.navigationController?.setViewControllers([destinationViewController], animated: false)
         }
     }
     
@@ -66,15 +67,16 @@ class FadeInAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView()
-        if let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) {
-                containerView.addSubview(toViewController.view)
-                toViewController.view.alpha = 0.0
-                
-                UIView.animateWithDuration(transitionDuration(transitionContext), animations: {
-                    toViewController.view.alpha = 1.0
-                }, completion: { finished in
-                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
-                })
+        if let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+        {
+            containerView.addSubview(toViewController.view)
+            toViewController.view.alpha = 0.0
+            
+            UIView.animateWithDuration(transitionDuration(transitionContext), animations: {
+                toViewController.view.alpha = 1.0
+            }, completion: { finished in
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+            })
         }
     }
     
