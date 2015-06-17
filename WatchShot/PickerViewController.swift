@@ -134,18 +134,8 @@ extension PickerViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PickerViewCell", forIndexPath: indexPath) as! PickerViewCell
 
-        let asset = fetchResult[indexPath.item] as! PHAsset
-        let assetSize = CGSizeMake(CGFloat(asset.pixelWidth), CGFloat(asset.pixelHeight))
-
-        let watchManager = WatchManager.sharedInstance
-        let watchSize = watchManager.sizeForScreenshotSize(assetSize)!
+        cell.asset = fetchResult[indexPath.item] as? PHAsset
         
-        let imageManager = PHImageManager.defaultManager()
-        let imageRequestOptions = PHImageRequestOptions()
-        imageManager.requestImageForAsset(asset, targetSize: assetSize, contentMode: PHImageContentMode.AspectFill, options: imageRequestOptions, resultHandler: { screenshot, info in
-            cell.setScreenshot(screenshot, watchSize: watchSize)
-        })
-
         return cell
     }
     
@@ -179,21 +169,68 @@ extension PickerViewController: UIScrollViewDelegate {
 class PickerViewCell: UICollectionViewCell {
 
     @IBOutlet var screenshotView: UIImageView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    
+    /// In-flight image request.
+    private var requestID: PHImageRequestID?
 
-    /// Screenshot image.
-    var screenshot: UIImage?
+    /// Photos asset used to set image.
+    var asset: PHAsset? {
+        didSet {
+            if let asset = asset {
+                self.activityIndicator.startAnimating()
+                self.activityIndicator.hidden = false
 
+                let assetSize = CGSizeMake(CGFloat(asset.pixelWidth), CGFloat(asset.pixelHeight))
+                
+                let watchManager = WatchManager.sharedInstance
+                watchSize = watchManager.sizeForScreenshotSize(assetSize)
+                
+                let imageManager = PHImageManager.defaultManager()
+                if requestID != nil {
+                    imageManager.cancelImageRequest(requestID!)
+                }
+                
+                let imageRequestOptions = PHImageRequestOptions()
+                imageRequestOptions.networkAccessAllowed = true
+                imageRequestOptions.deliveryMode = .Opportunistic
+                
+                requestID = imageManager.requestImageForAsset(asset, targetSize: assetSize, contentMode: PHImageContentMode.AspectFill, options: imageRequestOptions, resultHandler: { screenshot, info in
+                    
+                    let isInCloud = (info[PHImageResultIsInCloudKey] as? NSNumber)?.boolValue ?? false
+                    let isCancelled = (info[PHImageCancelledKey] as? NSNumber)?.boolValue ?? false
+                    let isError = (info[PHImageErrorKey] as? NSNumber)?.boolValue ?? false
+                    let isDegraded = (info[PHImageResultIsDegradedKey] as? NSNumber)?.boolValue ?? false
+
+                    if isCancelled {
+                        // Image request cancelled; bail out now.
+                        return
+                    }
+                    if isInCloud || isError {
+                        // Image is in the cloud and network access unavailable, or other error.
+                        self.activityIndicator.stopAnimating()
+                        return
+                    }
+                    
+                    // Only clear the request ID if this isn't degraded, because otherwise the request is still in progress and we're going to update again.
+                    if !isDegraded {
+                        self.requestID = nil
+                        self.activityIndicator.stopAnimating()
+                    }
+                    
+                    self.screenshot = screenshot
+                    self.screenshotView.image = screenshot
+                })
+            }
+        }
+    }
+    
     /// Size of the appropriate watch model.
     var watchSize: WatchSize?
 
-    func setScreenshot(screenshot: UIImage, watchSize: WatchSize) {
-        // FIXME here would be one good place to handle 38mm
-        self.watchSize = watchSize
-        self.screenshot = screenshot
-
-        screenshotView.image = screenshot
-    }
-
+    /// Screenshot image.
+    var screenshot: UIImage?
+    
 }
 
 // MARK: PHPhotoLibraryChangeObserver
