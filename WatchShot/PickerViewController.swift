@@ -144,6 +144,12 @@ extension PickerViewController: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegate
 extension PickerViewController: UICollectionViewDelegate {
     
+    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // Make sure there's a screenshot in the cell.
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PickerViewCell
+        return cell.screenshot != nil
+    }
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // When an item is tapped on, scroll it to the center. The storyboard already has the associated segue to the compose view hooked up.
         collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
@@ -212,13 +218,13 @@ class PickerViewCell: UICollectionViewCell {
                         return
                     }
                     
-                    // Only clear the request ID if this isn't degraded, because otherwise the request is still in progress and we're going to update again.
+                    // Only clear the request ID if this isn't degraded, because otherwise the request is still in progress and we're going to update again. Likewise don't actually save the degraded screenshot.
                     if !isDegraded {
                         self.requestID = nil
+                        self.screenshot = screenshot
                         self.activityIndicator.stopAnimating()
                     }
                     
-                    self.screenshot = screenshot
                     self.screenshotView.image = screenshot
                 })
             }
